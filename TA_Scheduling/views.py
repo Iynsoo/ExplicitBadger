@@ -22,8 +22,15 @@ class Login(View):
             return render(request, "login.html", {"message": "bad password"})
         else:
             request.session["name"] = m.name
-
-            return redirect("/home_admin/")
+            print(m.userType)
+            if m.userType == 'Admin':
+                return redirect("/home_admin/")
+            elif m.userType == 'Instructor':
+                return redirect("/home_instructor/")
+            elif m.userType == 'TA':
+                return redirect("/home_ta/")
+            else:
+                return render(request, "login.html", {"message": "do not have a role"})
 
 class Home_admin(View):
     def get(self, request):

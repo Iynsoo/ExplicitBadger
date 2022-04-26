@@ -2,8 +2,8 @@ from django.db import models
 
 # Create your models here.
 class Role(models.TextChoices):
-    ad = "Admin"
-    ins = "Instructor"
+    admin = "Admin"
+    instructor = "Instructor"
     ta = "TA"
 
 class MyUser(models.Model):

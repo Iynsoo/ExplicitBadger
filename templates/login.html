@@ -2,10 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <h1>Login Page</h1>
+<div class="login_box">
+    <div class = "center">
 <form action="/" method="post">
 {% csrf_token %}
     <table>
@@ -22,5 +25,7 @@
 <a href="createAccount/">
    <button>Create account</button>
 </a>
+        </div>
+</div>
 </body>
 </html>
