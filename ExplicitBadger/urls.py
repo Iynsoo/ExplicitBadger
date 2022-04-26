@@ -22,6 +22,10 @@ urlpatterns = [
     path('', Login.as_view()),
     path('home_admin/', Home_admin.as_view()),
     path('createAccount/', Signup.as_view()),
+    path('deleteAccount/', Delete_Account.as_view()),
+    path('editAccount/', Edit_Account.as_view()),
+    path('createCourse/', Create_Course.as_view()),
+    path('createSection/', Create_Section.as_view()),
     path('home_instructor/', Home_instructor.as_view()),
     path('home_ta/', Home_ta.as_view()),
 ]

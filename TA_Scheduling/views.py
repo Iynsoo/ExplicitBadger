@@ -42,6 +42,26 @@ class Signup(View):
         return render(request, "createAccount.html", {})
     pass
 
+class Delete_Account(View):
+    def get(self, request):
+        return render(request, "deleteAccount.html", {})
+    pass
+
+class Edit_Account(View):
+    def get(self, request):
+        return render(request, "editAccount.html", {})
+    pass
+
+class Create_Course(View):
+    def get(self, request):
+        return render(request, "createCourse.html", {})
+    pass
+
+class Create_Section(View):
+    def get(self, request):
+        return render(request, "createSection.html", {})
+    pass
+
 class Home_instructor(View):
     def get(self, request):
         return render(request, "home_instructor.html", {})
