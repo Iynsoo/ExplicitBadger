@@ -1,3 +1,10 @@
 
 /* Login Page */
+.login_box{
+    display: flex;
+}
 
+.center{
+    background-color: orange;
+    margin: auto;
+}
