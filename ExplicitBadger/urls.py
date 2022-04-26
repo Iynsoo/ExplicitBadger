@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Login.as_view()),
     path('home/', Home.as_view()),
+    #path('login.html','signup.html'),
 ]
