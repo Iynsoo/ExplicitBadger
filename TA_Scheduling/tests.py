@@ -1,8 +1,7 @@
 from django.test import TestCase
 from .models import MyUser
-import unittest
 
-class TestMyUser(unittest.TestCase):
+class TestMyUser(TestCase):
     def test_NullUserName(self):
         with self.assertRaises(Exception, msg="Username is null"):
             m = MyUser(name=None, password="password")
@@ -23,4 +22,17 @@ class TestMyUser(unittest.TestCase):
             m = MyUser(name="Username", password="LooooooooooooooongPassword")
             m.full_clean()
 
+    def test_default(self):
+        with self.assertRaises(Exception, msg="default constructor fails to raise Exception"):
+            m = MyUser()
+            m.full_clean()
 
+    def test_oneArg(self):
+        with self.assertRaises(Exception, msg="one argument constructor fails to raise Exception"):
+            m = MyUser(name="Username")
+            m.full_clean()
+
+    def test_twoArg(self):
+        m = MyUser(name="Username", password="password")
+        self.assertEqual("username has the password password", m.__str__())
+        m.full_clean()
