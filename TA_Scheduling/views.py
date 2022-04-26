@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from .models import MyUser
+from django.contrib import messages
+from django.contrib import messages
 # Create your views here.
 
 class Login(View):
@@ -23,6 +25,13 @@ class Login(View):
             return redirect("/home/")
 
 class Home(View):
-    def get(self,request):
-        return render(request,"home.html",{})
+    def get(self, request):
+        return render(request, "home.html", {})
     pass
+
+
+def signup(View):
+    def get(self, request):
+        return render(request, "createAccount.html", {})
+    pass
+
