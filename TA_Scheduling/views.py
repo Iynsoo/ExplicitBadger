@@ -30,7 +30,7 @@ class Home(View):
     pass
 
 
-def signup(View):
+class Signup(View):
     def get(self, request):
         return render(request, "createAccount.html", {})
     pass
