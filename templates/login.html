@@ -9,11 +9,18 @@
 <form action="/" method="post">
 {% csrf_token %}
     <table>
-        <tr><td>name: </td><td><input type="text" name="name"></td></tr>
-        <tr><td>password: </td><td><input type="password" name="password"></td></tr>
+        <tr><td>name: </td><td><input type="text" name="name" placeholder="Enter Your Password" Required></td></tr>
+
+        <tr><td>password: </td><td><input type="password" name="password" placeholder="Enter Your Password" Required></td></tr>
     </table>
     <input type="submit">
+
+
 </form>
 {{ message }}
+
+<a href="createAccount.html">
+   <button>Visit Google</button>
+</a>
 </body>
 </html>
