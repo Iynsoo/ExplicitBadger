@@ -22,11 +22,12 @@ class Login(View):
             return render(request, "login.html", {"message": "bad password"})
         else:
             request.session["name"] = m.name
+
             return redirect("/home/")
 
 class Home(View):
     def get(self, request):
-        return render(request, "home.html", {})
+        return render(request, "home_admin.html", {})
     pass
 
 
