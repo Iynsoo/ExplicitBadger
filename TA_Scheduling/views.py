@@ -23,16 +23,24 @@ class Login(View):
         else:
             request.session["name"] = m.name
 
-            return redirect("/home/")
+            return redirect("/home_admin/")
 
-class Home(View):
+class Home_admin(View):
     def get(self, request):
         return render(request, "home_admin.html", {})
     pass
-
 
 class Signup(View):
     def get(self, request):
         return render(request, "createAccount.html", {})
     pass
 
+class Home_instructor(View):
+    def get(self, request):
+        return render(request, "home_instructor.html", {})
+    pass
+
+class Home_ta(View):
+    def get(self, request):
+        return render(request, "home_ta.html", {})
+    pass
