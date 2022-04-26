@@ -15,12 +15,9 @@ class Login(View):
         except:
             noSuchUser = True
         if noSuchUser:
-            m = MyUser(name=request.POST['name'], password = request.POST['password'])
-            m.save()
-            request.session["name"] = m.name
-            return redirect("/home/")
+            return render(request,"login.html",{"message":"login failed"})
         elif badPassword:
-            return render(request,"home.html",{"message":"bad password"})
+            return render(request,"login.html",{"message":"bad password"})
         else:
             request.session["name"] = m.name
             return redirect("/home/")
