@@ -40,7 +40,27 @@ class Home_admin(View):
 class Signup(View):
     def get(self, request):
         return render(request, "createAccount.html", {})
-    pass
+
+    def post(self, request):
+        name = request.POST['username']
+        pass1 = request.POST['pass1']
+        pass2 = request.POST['pass2']
+        userType = request.POST['select_UserType']
+        email = request.POST['email']
+        fname = request.POST['fname']
+        lname = request.POST['lname']
+        print(name)
+        print(pass1)
+        print(userType)
+        print(email)
+        print(fname)
+        print(lname)
+
+        if pass1 != pass2:
+            return render(request, "createAccount.html", {"message": "Enter same password"})
+        else:
+            MyUser.objects.create(name=name,password=pass1,userType=userType,email=email,first_name=fname,last_name=lname)
+            return render(request, "createAccount.html", {})
 
 class Delete_Account(View):
     def get(self, request):
