@@ -20,6 +20,9 @@
         margin: auto;
         padding: 1rem;
     }
+    .error{
+        color: red;
+    }
 </style>
 
 <body>
@@ -34,11 +37,12 @@
         <tr><td>password: </td><td><input type="password" name="password" placeholder="Enter Your Password" Required></td></tr>
     </table>
     <input type="submit">
-
+    <div class = "error">
+        {{ message }}
+    </div>
 
 </form>
-{{ message }}
-        </div>
+    </div>
 </div>
 </body>
 </html>
