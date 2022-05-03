@@ -87,12 +87,16 @@ class Create_Section(View):
 
 class Home_instructor(View):
     def get(self, request):
-        return render(request, "home_instructor.html", {})
+        m = request.session["name"]
+        role = MyUser.objects.get(name=m).userType
+        return render(request, "home_instructor.html", {"name": m,"role":role})
     pass
 
 class Home_ta(View):
     def get(self, request):
-        return render(request, "home_ta.html", {})
+        m = request.session["name"]
+        role = MyUser.objects.get(name=m).userType
+        return render(request, "home_ta.html", {"name": m, "role": role})
     pass
 
 class User_profile(View):
