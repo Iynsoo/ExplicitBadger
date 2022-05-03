@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib import messages
 # Create your views here.
 
+
 class Login(View):
     def get(self,request):
         return render(request,"login.html",{})

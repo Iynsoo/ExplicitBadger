@@ -3,9 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Create Account</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
 </head>
+
+<style>
+    header{
+        height: 50px;
+        padding: 1rem;
+        background-color: darkorange;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
+
+<header>
+    <h1>Create your account!</h1>
+    <nav>
+        <a href="../">
+            <button>Home</button>
+        </a>
+    </nav>
+</header>
+
 <body>
-    <h3>Create your account!</h3>
     <form method="post" action="/createAccount/">
         {% csrf_token %}
         <div class="form-group">
