@@ -13,3 +13,15 @@ class MyUser(models.Model):
     email = models.CharField(max_length=40)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
+
+class course(models.Model):
+    courseName = models.CharField(max_length=20)
+    courseInstructor = models.CharField(max_length=20)
+    meetingTime = models.TimeField()
+    sectionNum = models.IntegerField()
+
+class discussion(models.Model):
+    labNum = models.IntegerField()
+    labTA = models.CharField(max_length=20)
+
+

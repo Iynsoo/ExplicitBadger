@@ -7,28 +7,60 @@
 </head>
 
 <style>
-    .login_box{
-        display: flex;
-        justify-content: center;
-        align-items:center;
-        min-height: 100vh;
-    }
-    .center{
-        display: flex;
-        border-radius: 10px;
-        background-color: orange;
-        margin: auto;
-        padding: 1rem;
-    }
-    .error{
-        color: red;
-    }
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+}
+
+/* Style the header */
+header {
+  background-color: #666;
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+    border:5px solid black;
+    border-radius: 5px;
+}
+.column {
+  float: left;
+  padding:10px;
+background-color: darkorange;
+
+}
+
+.column.center{
+    width: 100%;
+    padding: 5px;
+     border:5px solid black;
+    border-radius: 5px;
+    text-align: center;
+    display: block;
+    margin:auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other on smaller screens (600px wide or less) */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
 </style>
 
 <body>
-<h1>Login Page</h1>
-<div class="login_box">
-    <div class = "center">
+<header><h1>Login Page</h1></header>
+<div class="column center">
 <form action="/" method="post">
 {% csrf_token %}
     <table>
@@ -42,7 +74,6 @@
     </div>
 
 </form>
-    </div>
 </div>
 </body>
 </html>

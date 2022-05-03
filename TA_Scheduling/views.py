@@ -72,6 +72,9 @@ class Delete_Account(View):
 class Edit_Account(View):
     def get(self, request):
         return render(request, "editAccount.html", {})
+
+    def post(self,reqUEST):
+        all_members
     pass
 
 class Create_Course(View):
