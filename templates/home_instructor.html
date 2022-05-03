@@ -3,9 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <title>Instructor Home Page</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
-<h1>Instructor Home Page</h1>
 
+<style>
+    header{
+        height: 50px;
+        padding: 1rem;
+        background-color: darkorange;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
+
+<header>
+<h1>TA Schedule APP - Instructor</h1>
+    <nav>
+        <a href="../">
+            <button>LogOut</button>
+        </a>
+    </nav>
+</header>
+<body>
+
+<!-- Manage Account block -->
+<div class = block>
+        <div class = center>
+        <div class = block_str>Manage Account</div>
+       <div class = block_sub>
+          <a href="../editAccount/">
+              <button>Edit Account</button>
+          </a>
+      </div>
+    </div>
+</div>
+
+<!-- Manage Course block -->
+<div class = block>
+        <div class = center>
+        <div class = block_str>Manage Courses</div>
+       <div class = block_sub>
+          <a href="../viewCourses/">
+              <button>View Courses</button>
+          </a>
+      </div>
+    </div>
+</div>
+
+<!-- Manage Section block -->
+<div class = block>
+        <div class = center>
+        <div class = block_str>Manage Sections</div>
+       <div class = block_sub>
+          <a href="../createSection/">
+              <button>Create Section</button>
+          </a>
+      </div>
+    </div>
+</div>
 </body>
 </html>
