@@ -5,6 +5,21 @@
     <title>Title</title>
 </head>
 <body>
-
+    <form method="post" action="/profile/">
+        {% csrf_token %}
+        <table>
+            <tr><td>User name: </td><td>{{ name }}</td></tr>
+            <tr><td>Role: </td><td>{{ role }}</td></tr>
+            <tr><td>Email: </td><td>{{ email }}</td></tr>
+            <tr><td>First name: </td><td>{{ fName }}</td></tr>
+            <tr><td>Last name: </td><td>{{ lName }}</td></tr>
+        </table>
+        <hr>
+        <div class="form-group">
+            <label for="email">New Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your New Email Address" Required>
+            <button type="submit" class="btn btn-primary">Edit</button>
+        </div>
+    </form>
 </body>
 </html>
