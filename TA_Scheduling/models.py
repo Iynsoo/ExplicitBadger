@@ -22,6 +22,6 @@ class course(models.Model):
 
 class discussion(models.Model):
     labNum = models.IntegerField()
-    labTA = models.CharField(max_length= 20)
+    labTA = models.CharField(max_length=20)
 
 
