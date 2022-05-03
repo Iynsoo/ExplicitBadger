@@ -34,7 +34,9 @@ class Login(View):
 
 class Home_admin(View):
     def get(self, request):
-        return render(request, "home_admin.html", {})
+        m = request.session["name"]
+        role = MyUser.objects.get(name=m).userType
+        return render(request, "home_admin.html", {"name": m,"role":role})
     pass
 
 class Signup(View):
@@ -90,4 +92,9 @@ class Home_instructor(View):
 class Home_ta(View):
     def get(self, request):
         return render(request, "home_ta.html", {})
+    pass
+
+class User_profile(View):
+    def get(self, request):
+        return render(request, "profile.html", {})
     pass
