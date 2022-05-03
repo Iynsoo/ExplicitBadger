@@ -18,11 +18,24 @@
 </style>
 
 <header>
-<h1>TA Schedule APP - Instructor</h1>
+    <h1>TA Schedule APP - Admin</h1>
     <nav>
-        <a href="../">
-            <button>LogOut</button>
-        </a>
+        <span>
+            User name: {{ name }}
+        </span>
+        <span>
+            User role: {{ role }}
+        </span>
+        <span>
+            <a href="../profile/">
+                <button>Profile</button>
+            </a>
+        </span>
+        <span>
+            <a href="../">
+                <button>LogOut</button>
+            </a>
+        </span>
     </nav>
 </header>
 <body>
