@@ -28,4 +28,5 @@ urlpatterns = [
     path('createSection/', Create_Section.as_view()),
     path('home_instructor/', Home_instructor.as_view()),
     path('home_ta/', Home_ta.as_view()),
+    path('profile/', User_profile.as_view),
 ]
