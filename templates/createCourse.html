@@ -5,6 +5,27 @@
     <title>Title</title>
 </head>
 <body>
+<h3>Create your course!</h3>
 
+<form action="createCourse.html">
+    <label for="courseName">Course Name</label>
+    <input type="text" class="form-control" id="courseName" name="courseName" placeholder="Create A courseName (use only letters and numbers)" Required>
+    <br>
+    <label for="courseTime">Course Meeting Time</label>
+    <input type="time" class="form-control" id="courseInstructor" name="courseInstructor" placeholder="Assign a Course Instructor (use only letters and numbers)" Required>
+<br>
+     <label for="courseInstructor">Course Instructor</label>
+    <input type="text" class="form-control" id="courseInstructor" name="courseInstructor" placeholder="Create A courseName (use only letters and numbers)" Required>
+<br>
+     <label for="sectionNum">Section Num</label>
+    <input type="number" class="form-control" id="sectionNum" name="sectionNum" placeholder="Create A section number (use only letters and numbers)" Required>
+    <br>
+    <input type="submit" value="Create Course"></form>
+</form>
+
+<p></p>
+{% for i in all %}
+{{ i }}<br/>
+{% endfor %}
 </body>
 </html>

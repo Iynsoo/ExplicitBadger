@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .models import MyUser
+from .models import *
 from django.contrib import messages
 from django.contrib import messages
 # Create your views here.
-
 
 class Login(View):
     def get(self,request):
@@ -35,9 +34,7 @@ class Login(View):
 
 class Home_admin(View):
     def get(self, request):
-        m = request.session["name"]
-        role = MyUser.objects.get(name=m).userType
-        return render(request, "home_admin.html", {"name": m,"role":role})
+        return render(request, "home_admin.html", {})
     pass
 
 class Signup(View):
@@ -73,12 +70,24 @@ class Delete_Account(View):
 class Edit_Account(View):
     def get(self, request):
         return render(request, "editAccount.html", {})
+
     pass
 
 class Create_Course(View):
     def get(self, request):
-        return render(request, "createCourse.html", {})
-    pass
+        all_courses = course.objects.all
+        return render(request, "createCourse.html", {"all": all_courses})
+    def post(self,request):
+        all_courses = course.objects.all
+        s = request.POST.get('course','')
+        corName = request.session["courseName"]
+        corTime = request.session["courseTime"]
+        corInstructor = request.session["courseInstructor"]
+        secNum = request.session["sectionNum"]
+        if s != '':
+            newThings = course(courseName= corName,meetingTime=corTime,courseInstructor=corInstructor,sectionNum=secNum)
+            newThings.save()
+        return render(request, "createCourse.html", {"all": all_courses})
 
 class Create_Section(View):
     def get(self, request):
@@ -87,30 +96,10 @@ class Create_Section(View):
 
 class Home_instructor(View):
     def get(self, request):
-        m = request.session["name"]
-        role = MyUser.objects.get(name=m).userType
-        return render(request, "home_instructor.html", {"name": m,"role":role})
+        return render(request, "home_instructor.html", {})
     pass
 
 class Home_ta(View):
     def get(self, request):
-        m = request.session["name"]
-        role = MyUser.objects.get(name=m).userType
-        return render(request, "home_ta.html", {"name": m, "role": role})
+        return render(request, "home_ta.html", {})
     pass
-
-class User_profile(View):
-    def get(self, request):
-        name = request.session["name"]
-        this = MyUser.objects.get(name=name)
-        userType = this.userType
-        email = this.email
-        first_name = this.first_name
-        last_name = this.last_name
-        return render(request, "profile.html", {"name":name,"role":userType,"email":email,"fName":first_name,"lName":last_name})
-    def post(self, request):
-        email = request.POST["email"]
-        name = request.session["name"]
-        this = MyUser.objects.filter(name=name)
-        this.update(email=email)
-        return redirect("/profile/")
