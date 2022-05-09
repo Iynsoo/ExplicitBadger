@@ -137,6 +137,9 @@ class TestDiscussion(TestCase):
         response = self.client.get('/createSection/')
         self.assertEqual(response.status_code, 200, "createSection/ doesn't exist at desired location")
 
+        response = self.client.get('/profile/')
+        self.assertEqual(response.status_code, 200, "profile/ doesn't exist at desired location")
+
     def test_view_uses_correct_template(self):
         response = self.client.get('/home_admin/')
         self.assertEqual(response.status_code, 200, "home_admin/ doesn't exist at desired location")
@@ -169,4 +172,8 @@ class TestDiscussion(TestCase):
         response = self.client.get('/createSection/')
         self.assertEqual(response.status_code, 200, "createSection/ doesn't exist at desired location")
         self.assertTemplateUsed(response, 'createSection.html')
+
+        response = self.client.get('/profile/')
+        self.assertEqual(response.status_code, 200, "profile/ doesn't exist at desired location")
+        self.assertTemplateUsed(response, 'profile.html')
 
