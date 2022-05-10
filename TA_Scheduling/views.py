@@ -34,7 +34,9 @@ class Login(View):
 
 class Home_admin(View):
     def get(self, request):
-        return render(request, "home_admin.html", {})
+        m = request.session["name"]
+        role = MyUser.objects.get(name=m).userType
+        return render(request, "home_admin.html", {"name": m, "role": role})
     pass
 
 class Signup(View):
@@ -102,10 +104,30 @@ class Create_Section(View):
 
 class Home_instructor(View):
     def get(self, request):
-        return render(request, "home_instructor.html", {})
+        m = request.session["name"]
+        role = MyUser.objects.get(name=m).userType
+        return render(request, "home_instructor.html", {"name": m, "role": role})
     pass
 
 class Home_ta(View):
     def get(self, request):
-        return render(request, "home_ta.html", {})
+        m = request.session["name"]
+        role = MyUser.objects.get(name=m).userType
+        return render(request, "home_ta.html", {"name": m, "role": role})
     pass
+
+class User_profile(View):
+    def get(self, request):
+        name = request.session["name"]
+        this = MyUser.objects.get(name=name)
+        userType = this.userType
+        email = this.email
+        first_name = this.first_name
+        last_name = this.last_name
+        return render(request, "profile.html", {"name":name,"role":userType,"email":email,"fName":first_name,"lName":last_name})
+    def post(self, request):
+        email = request.POST["email"]
+        name = request.session["name"]
+        this = MyUser.objects.filter(name=name)
+        this.update(email=email)
+        return redirect("/profile/")
