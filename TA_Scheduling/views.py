@@ -79,15 +79,21 @@ class Create_Course(View):
         return render(request, "createCourse.html", {"all": all_courses})
     def post(self,request):
         all_courses = course.objects.all
-        s = request.POST.get('course','')
-        corName = request.session["courseName"]
-        corTime = request.session["courseTime"]
-        corInstructor = request.session["courseInstructor"]
-        secNum = request.session["sectionNum"]
-        if s != '':
-            newThings = course(courseName= corName,meetingTime=corTime,courseInstructor=corInstructor,sectionNum=secNum)
-            newThings.save()
-        return render(request, "createCourse.html", {"all": all_courses})
+        s = request.POST.get('course', '')
+
+        corName = request.POST['courseName']
+        corTime = request.POST['courseTime']
+        corInstructor = request.POST['courseInstructor']
+        secNum = request.POST['sectionNum']
+
+        print(corName)
+        print(corTime)
+        print(corInstructor)
+        print(secNum)
+        #if s != '':
+        course.objects.create(courseName=corName, meetingTime=corTime, courseInstructor=corInstructor, sectionNum=secNum)
+        #return render(request, "createCourse.html", {"message": "course created"})
+        return render(request, "createCourse.html", {"all": all_courses, "message": "course created"})
 
 class Create_Section(View):
     def get(self, request):

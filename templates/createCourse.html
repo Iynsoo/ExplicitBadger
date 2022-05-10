@@ -1,18 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
+<style>
+    table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
 <body>
 <h3>Create your course!</h3>
 
-<form action="createCourse.html">
+<form method="post" action="/createCourse/">
+    {% csrf_token %}
     <label for="courseName">Course Name</label>
     <input type="text" class="form-control" id="courseName" name="courseName" placeholder="Create A courseName (use only letters and numbers)" Required>
     <br>
     <label for="courseTime">Course Meeting Time</label>
-    <input type="time" class="form-control" id="courseInstructor" name="courseInstructor" placeholder="Assign a Course Instructor (use only letters and numbers)" Required>
+    <input type="time" class="form-control" id="courseTime" name="courseTime" placeholder="Assign a Course Instructor (use only letters and numbers)" Required>
 <br>
      <label for="courseInstructor">Course Instructor</label>
     <input type="text" class="form-control" id="courseInstructor" name="courseInstructor" placeholder="Create A courseName (use only letters and numbers)" Required>
@@ -20,12 +40,29 @@
      <label for="sectionNum">Section Num</label>
     <input type="number" class="form-control" id="sectionNum" name="sectionNum" placeholder="Create A section number (use only letters and numbers)" Required>
     <br>
-    <input type="submit" value="Create Course"></form>
+    <input type="submit" value="Create Course">
 </form>
+{{ message }}
 
 <p></p>
-{% for i in all %}
-{{ i }}<br/>
+<table>
+<tr>
+    <th>Course Name</th>
+<th>Course Instructor</th>
+<th>Meeting Time</th>
+<th>section Num</th>
+</tr>
+{% for course in all %}
+
+    <tr>
+    <td>{{ course.courseName }}</td>
+    <td>{{ course.courseInstructor }}</td>
+    <td>{{ course.meetingTime }}</td>
+    <td>{{ course.sectionNum }}</td>
+    </tr>
+
+
 {% endfor %}
+</table>
 </body>
 </html>
