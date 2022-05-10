@@ -87,20 +87,25 @@ class Create_Course(View):
 
         corName = request.POST['courseName']
         corTime = request.POST['courseTime']
-        corInstructor = request.POST['courseInstructor']
+        if request.POST['userID'] == '':
+            id = None
+            corInstructor = 'None'
+        else:
+            id = MyUser.objects.get(id=request.POST['userID'])
+            corInstructor = id.__str__()
         secNum = request.POST['sectionNum']
-
         check = course.objects.filter(courseName=corName, sectionNum=secNum)
 
+        print(request.POST)
         print(corName)
         print(corTime)
-        print(corInstructor)
         print(secNum)
+        print(corInstructor)
         #if s != '':
         if check.exists():
             return render(request, "createCourse.html", {"all": all_courses,"all_Ins":all_Ins, "message": "Course already exist!"})
         else:
-            course.objects.create(courseName=corName, meetingTime=corTime, courseInstructor=corInstructor, sectionNum=secNum)
+            course.objects.create(courseName=corName, meetingTime=corTime, courseInstructor=corInstructor, sectionNum=secNum, userID=id)
             return render(request, "createCourse.html", {"all": all_courses,"all_Ins":all_Ins, "message": "course created"})
 
 class Create_Section(View):

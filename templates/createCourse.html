@@ -34,12 +34,12 @@ tr:nth-child(even) {
     <label for="courseTime">Course Meeting Time</label>
     <input type="time" class="form-control" id="courseTime" name="courseTime" placeholder="Assign a Course Instructor (use only letters and numbers)" Required>
     <br>
-    <label for="courseInstructor">Course Instructor</label>
-    <select class="form-control" id="courseInstructor" name="courseInstructor">
+    <label for="userID">Course Instructor</label>
+    <select class="form-control" id="userID" name="userID">
             <option selected disabled>Choose an Instructor</option>
-            <option value="None">None</option>
+            <option value="">None</option>
         {% for ins in all_Ins %}
-            <option value="{{ ins.first_name }} {{ ins.last_name }}">{{ ins.first_name }} {{ ins.last_name }}</option>
+            <option value={{ ins.id }}>{{ ins.first_name }} {{ ins.last_name }}</option>
         {% endfor %}
     </select>
     <br>
