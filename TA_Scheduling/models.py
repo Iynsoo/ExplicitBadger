@@ -22,11 +22,7 @@ class course(models.Model):
     courseInstructor = models.CharField(max_length=50)
     meetingTime = models.TimeField()
     sectionNum = models.IntegerField()
-    userID = models.ForeignKey(
-        MyUser,
-        on_delete=models.CASCADE,
-        null=True,
-    )
+    userID = models.ManyToManyField(MyUser)
 
     def __str__(self):
         return self.courseName
@@ -35,7 +31,11 @@ class discussion(models.Model):
     labNum = models.IntegerField()
     labTA = models.CharField(max_length=50)
     courseID = models.ForeignKey(course, on_delete=models.CASCADE)
-    userID = models.ManyToManyField(MyUser)
+    userID = models.ForeignKey(
+        MyUser,
+        on_delete=models.CASCADE,
+        null=True,
+    )
 
     def __str__(self):
         return "%s" % (self.labNum)

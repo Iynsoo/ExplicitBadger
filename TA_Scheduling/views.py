@@ -105,7 +105,7 @@ class Create_Course(View):
         if check.exists():
             return render(request, "createCourse.html", {"all": all_courses,"all_Ins":all_Ins, "message": "Course already exist!"})
         else:
-            course.objects.create(courseName=corName, meetingTime=corTime, courseInstructor=corInstructor, sectionNum=secNum, userID=id)
+            course.objects.create(courseName=corName, meetingTime=corTime, courseInstructor=corInstructor, sectionNum=secNum).userID.add(id)
             return render(request, "createCourse.html", {"all": all_courses,"all_Ins":all_Ins, "message": "course created"})
 
 class Create_Section(View):
