@@ -33,11 +33,17 @@ tr:nth-child(even) {
     <br>
     <label for="courseTime">Course Meeting Time</label>
     <input type="time" class="form-control" id="courseTime" name="courseTime" placeholder="Assign a Course Instructor (use only letters and numbers)" Required>
-<br>
-     <label for="courseInstructor">Course Instructor</label>
-    <input type="text" class="form-control" id="courseInstructor" name="courseInstructor" placeholder="Create A courseName (use only letters and numbers)" Required>
-<br>
-     <label for="sectionNum">Section Num</label>
+    <br>
+    <label for="courseInstructor">Course Instructor</label>
+    <select class="form-control" id="courseInstructor" name="courseInstructor">
+            <option selected disabled>Choose an Instructor</option>
+            <option value="None">None</option>
+        {% for ins in all_Ins %}
+            <option value="{{ ins.first_name }} {{ ins.last_name }}">{{ ins.first_name }} {{ ins.last_name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="sectionNum">Section Num</label>
     <input type="number" class="form-control" id="sectionNum" name="sectionNum" placeholder="Create A section number (use only letters and numbers)" Required>
     <br>
     <input type="submit" value="Create Course">
