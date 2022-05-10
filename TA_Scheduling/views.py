@@ -78,9 +78,11 @@ class Edit_Account(View):
 class Create_Course(View):
     def get(self, request):
         all_courses = course.objects.all
-        return render(request, "createCourse.html", {"all": all_courses})
+        all_Ins = MyUser.objects.filter(userType="Instructor")
+        return render(request, "createCourse.html", {"all": all_courses,"all_Ins": all_Ins})
     def post(self,request):
         all_courses = course.objects.all
+        all_Ins = MyUser.objects.filter(userType="Instructor")
         s = request.POST.get('course', '')
 
         corName = request.POST['courseName']
@@ -88,14 +90,18 @@ class Create_Course(View):
         corInstructor = request.POST['courseInstructor']
         secNum = request.POST['sectionNum']
 
+        check = course.objects.filter(courseName=corName, sectionNum=secNum)
+
         print(corName)
         print(corTime)
         print(corInstructor)
         print(secNum)
         #if s != '':
-        course.objects.create(courseName=corName, meetingTime=corTime, courseInstructor=corInstructor, sectionNum=secNum)
-        #return render(request, "createCourse.html", {"message": "course created"})
-        return render(request, "createCourse.html", {"all": all_courses, "message": "course created"})
+        if check.exists():
+            return render(request, "createCourse.html", {"all": all_courses,"all_Ins":all_Ins, "message": "Course already exist!"})
+        else:
+            course.objects.create(courseName=corName, meetingTime=corTime, courseInstructor=corInstructor, sectionNum=secNum)
+            return render(request, "createCourse.html", {"all": all_courses,"all_Ins":all_Ins, "message": "course created"})
 
 class Create_Section(View):
     def get(self, request):
