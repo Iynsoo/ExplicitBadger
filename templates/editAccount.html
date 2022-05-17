@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}Edit Account{% endblock %}
+{% block content %}
 
-</body>
-</html>
+        <h1><small>Edit Page </small></h1>
+        <br/><br/>
+
+        <div class="form-group">
+    <form method ="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+         <button style="background-color: #FC932B;">Update Account</button>
+    </form>
+ </div>
+
+
+{% endblock %}

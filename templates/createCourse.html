@@ -1,27 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block title %}Change Password{% endblock %}
+{% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Create Course</title>
-
-</head>
-<style>
-    table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
 </style>
 <body>
 <h3>Create your course!</h3>
@@ -71,4 +51,4 @@ tr:nth-child(even) {
 {% endfor %}
 </table>
 </body>
-</html>
+{% endblock %}

@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}Delete Account{% endblock %}
+{% block content %}
 
-</body>
-</html>
+
+ <h1>Delete Account</h1>
+ <br/><br/>
+
+ <div class="form-group">
+<form method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete "{{ MyUser.name }}"?</p>
+    {{ form }}
+    <input type="submit" value="Confirm">
+</form>
+  </div>
+{% endblock %}
