@@ -79,9 +79,29 @@ class Delete_Account(View):
 
 class Edit_Account(View):
     def get(self, request):
-        return render(request, "editAccount.html", {})
+        all_user = MyUser.objects.all
+        return render(request, "editAccount.html", {"all_user": all_user})
+    def post(self, request):
+        all_user = MyUser.objects.all
 
-    pass
+        id = request.POST['id']
+        name = request.POST['name']
+        password = request.POST['password']
+        #userType = request.POST['select_UserType']
+        email = request.POST['email']
+        fname = request.POST['fname']
+        lname = request.POST['lname']
+
+        print(id)
+        print(name)
+        print(password)
+        #print(userType)
+        print(email)
+        print(fname)
+        print(lname)
+
+        MyUser.objects.filter(id=id).update(name=name,password=password,email=email,first_name=fname,last_name=lname)
+        return render(request, "editAccount.html", {"all_user": all_user})
 
 class Create_Course(View):
     def get(self, request):
