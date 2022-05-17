@@ -3,8 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
+<style>
+    header{
+        height: 50px;
+        padding: 1rem;
+        background-color: darkorange;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
+<header>
+    <h1>Create a section!</h1>
+    <nav>
+        <a href="../">
+            <button>Home</button>
+        </a>
+    </nav>
+</header>
 
+
+<body>
+<h3>create section</h3>
+<form method="post" action="/createSection/">
+    {% csrf_token %}
+    <label for="secName">Lab TA</label>
+    <input type="text" class="form-control" id="secTA" required>
+    <br>
+    <label for="secName">section Num</label>
+    <input type="text" class="form-control" id="secNum" required>
+    <br>
+    <label for="secName">secID</label>
+    <input type="text" class="form-control" id="secID" required>
+</form>
 </body>
 </html>
+

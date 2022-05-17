@@ -111,6 +111,14 @@ class Create_Course(View):
 class Create_Section(View):
     def get(self, request):
         return render(request, "createSection.html", {})
+    def post(self,request):
+        allSections = discussion.objects.all
+        s = request.POST.get('course','')
+
+        secNum = request.POST['secNum']
+        secTA = request.POST['secTA']
+        secID = request.POST['secID']
+
     pass
 
 class Home_instructor(View):
