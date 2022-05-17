@@ -1,31 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Create Account</title>
-    <link href="styles.css" rel="stylesheet" type="text/css" />
-</head>
+{% extends 'base.html' %}
+{% block title %}Create Account{% endblock %}
+{% block content %}
 
-<style>
-    header{
-        height: 50px;
-        padding: 1rem;
-        background-color: darkorange;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-</style>
 
-<header>
-    <h1>Create your account!</h1>
-    <nav>
-        <a href="../">
-            <button>Home</button>
-        </a>
-    </nav>
-</header>
-
+ <h1>Create an account</h1>
+ <br/><br/>
 <body>
     <form method="post" action="/createAccount/">
         {% csrf_token %}
@@ -66,3 +45,4 @@
     </form>
 </body>
 </html>
+{% endblock %}
