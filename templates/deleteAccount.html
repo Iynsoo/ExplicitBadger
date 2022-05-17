@@ -1,10 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.4.0/js/dataTables.select.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <link href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.datatables.net/select/1.4.0/css/select.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
 
+    <meta charset=utf-8 />
+    <title>Delete Account</title>
+</head>
+  <script>
+$(document).ready(function() {
+    var table = $('#MyUser_table').DataTable( {
+        dom: 'Bfrtip',
+        select: false,
+    } );
+    $('#button').click(function () {
+        alert('user deleted');
+    });
+    $.ajax({
+            url: '/deleteAccount/',
+            type: "POST",
+            data: {
+                'ID': ID,
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+            },
+            success: function (data) {
+                alert ("Congrats! You sent some data: " + tagID);}
+            ,
+            error: function() {
+                 alert ("Something went wrong");
+             }})
+} );
+
+  </script>
+<body>
+    <h3>Delete Account</h3>
+
+    <table id = "MyUser_table" class = "display" width="100%">
+        <thead>
+            <tr>
+            <th>id</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Role</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for user in all_user %}
+        <tr>
+            <form method="post" action="/deleteAccount/">
+            {% csrf_token %}
+            <td>
+                <label for="id">{{ user.id }}</label>
+                <input type="hidden" id="id" name="id" value="{{ user.id }}">
+            </td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.password }}</td>
+            <td>{{ user.userType }}</td>
+            <td>{{ user.first_name }} {{ user.last_name }}</td>
+            <td>{{ user.email }}</td>
+            <td><input type="submit" value="Delete" id="button"></td>
+            </form>
+        </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+            <th>id</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Role</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th></th>
+            </tr>
+        </tfoot>
+    </table>
 </body>
 </html>

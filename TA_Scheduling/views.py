@@ -66,8 +66,14 @@ class Signup(View):
 
 class Delete_Account(View):
     def get(self, request):
-        return render(request, "deleteAccount.html", {})
-    pass
+        all_user = MyUser.objects.all
+        return render(request, "deleteAccount.html", {"all_user": all_user})
+    def post(self, request):
+        all_user = MyUser.objects.all
+        id = request.POST['id']
+        print(id)
+        MyUser.objects.get(id=id).delete()
+        return render(request, "deleteAccount.html", {"all_user": all_user})
 
 class Edit_Account(View):
     def get(self, request):
