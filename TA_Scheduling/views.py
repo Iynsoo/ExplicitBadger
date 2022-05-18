@@ -211,7 +211,9 @@ class Edit_Course(View):
         #c = request.sesstion['courseId']
         print(request.session['courseId'])
         thisCourse = course.objects.get(id=request.session['courseId'])
-        return render(request, "editCourse.html", {"name": m, "role": role, "thisCourse":thisCourse})
+        all_Ins = MyUser.objects.filter(userType="Instructor")
+        all_user = thisCourse.userID.all().filter(userType='TA')
+        return render(request, "editCourse.html", {"name": m, "role": role, "thisCourse":thisCourse,"all_Ins":all_Ins, "all_user":all_user})
 
 class Home_instructor(View):
     def get(self, request):

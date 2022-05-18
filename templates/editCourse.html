@@ -8,7 +8,43 @@
     <title>Title</title>
 </head>
 <body>
-    {{ thisCourse }}
+    <form method="post" action="/editCourse/">
+    <table>
+        <tr>
+            <th>Course Name:</th>
+            <td><input type="text" id="createCourse" name="createCourse" value="{{ thisCourse.courseName }}" required></td>
+        </tr>
+        <tr>
+            <th>Course Instructor:</th>
+            <td>
+                <select class="form-control" id="userID" name="userID">
+                <option {{ thisCourse.courseInstructor }}>{{ thisCourse.courseInstructor }}</option>
+                    {% for ins in all_Ins %}
+                    <option value={{ ins.id }}>{{ ins.first_name }} {{ ins.last_name }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Meeting Time:</th>
+            <td><input type="time" id="time" name="time" value="{{ thisCourse.meetingTime }}" required></td>
+        </tr>
+        <tr>
+            <th>Section Num:</th>
+            <td><input type="number" id="sectionNum" name="sectionNum" value="{{ thisCourse.sectionNum }}" required></td>
+        </tr>
+        <tr>
+            <th>Assign TA:</th>
+            <td>
+                <select multiple="multiple">
+                {% for user in all_user %}
+                    <option value="{{ user.id }}">{{ user }}</option>
+                {% endfor %}
+                </select>
+            </td>
+        </tr>
+    </table>
+    </form>
 </body>
 </html>
 {% endblock %}
