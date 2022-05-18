@@ -1,58 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>TA Home Page</title>
-    <link href="styles.css" rel="stylesheet" type="text/css" />
-</head>
-
-<style>
-    header{
-        height: 50px;
-        padding: 1rem;
-        background-color: darkorange;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-</style>
-
-<header>
-    <h1>TA Schedule APP - TA</h1>
-    <nav>
-        <span>
-            User name: {{ name }}
-        </span>
-        <span>
-            User role: {{ role }}
-        </span>
-        <span>
-            <a href="../profile/">
-                <button>Profile</button>
-            </a>
-        </span>
-        <span>
-            <a href="../">
-                <button>LogOut</button>
-            </a>
-        </span>
-    </nav>
-</header>
+{%  extends 'base.html' %}
+{% block title %}Instructor Home{% endblock %}
+{% block content %}
 <body>
-
-<!-- Manage Account block -->
-<div class = block>
-        <div class = center>
-        <div class = block_str>Manage Account</div>
-       <div class = block_sub>
-          <a href="../editAccount/">
-              <button>Edit Account</button>
-          </a>
-      </div>
-    </div>
-</div>
-
-
 
 <!-- Manage Section block -->
 <div class = block>
@@ -67,3 +16,4 @@
 </div>
 </body>
 </html>
+{% endblock %}

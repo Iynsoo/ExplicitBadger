@@ -13,7 +13,15 @@
   <body>
     <nav class="navbar" style="background-color: #FC932B;">
   <div class="container-fluid">
+  {% if role == 'Admin' %}
       <a class="navbar-brand" href="{% url 'home_admin' %}">TA Scheduling App </a>
+  {% endif %}
+  {% if role == 'Instructor' %}
+      <a class="navbar-brand" href="{% url 'home_instructor' %}">TA Scheduling App </a>
+  {% endif %}
+  {% if role == 'TA' %}
+      <a class="navbar-brand" href="{% url 'home_ta' %}">TA Scheduling App </a>
+  {% endif %}
        <span>
           &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; User name: {{ name }} |
             User role: {{ role }}
@@ -22,6 +30,7 @@
         style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .90rem;">
         Logout
       </button></a>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -32,18 +41,18 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Manage Accounts
           </a>
-             {% if role == 'Admin' %}
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-              <li><a class="dropdown-item" href="{% url 'profile' %}">My Profile</a></li>
-              <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'profile' %}">My Profile</a></li>
+            {% if role == 'Admin' %}
+            <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{% url 'create_account' %}">Create Account</a></li>
-              <li><hr class="dropdown-divider"></li>
+            <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{% url 'delete_account' %}">Delete Account</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{% url 'edit_account' %}">Edit Account</a></li>
-          </ul>
             {% endif %}
+          </ul>
         </li>
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -51,8 +60,10 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="{% url 'view_course' %}">View Courses</a></li>
+              {% if role == 'Admin' %}
               <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{% url 'create_course' %}">Create Course</a></li>
+              {% endif %}
           </ul>
         </li>
           <li class="nav-item dropdown">
@@ -61,8 +72,10 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="{% url 'view_section' %}">View Sections</a></li>
+              {% if role == 'Admin' %}
               <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="{% url 'create_section' %}">Create Sections</a></li>
+              {% endif %}
           </ul>
         </li>
       </ul>

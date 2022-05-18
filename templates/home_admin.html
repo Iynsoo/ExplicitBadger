@@ -1,5 +1,52 @@
 {%  extends 'base.html' %}
-{% block title %}Admin Home{% endblock %}
+{% block title %}Create Account{% endblock %}
 {% block content %}
+<body>
+<!-- Manage Account block -->
+<div class = block>
+        <div class = center>
+        <div class = block_str>Manage Account</div>
+        <div class = block_sub>
+          <a href="../createAccount/">
+              <button>Create account</button>
+          </a>
+      </div>
+       <div class = block_sub>
+          <a href="../deleteAccount/">
+              <button>Delete Account</button>
+         </a>
+      </div>
+       <div class = block_sub>
+          <a href="../editAccount/">
+              <button>Edit Account</button>
+          </a>
+      </div>
+    </div>
+</div>
 
+<!-- Manage Course block -->
+<div class = block>
+    <div class = center>
+        <div class = block_str>Manage Course</div>
+        <div class = block_sub>
+            <a href="../createCourse/">
+                <button>Create Course</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Manage Section block -->
+<div class = block>
+    <div class = center>
+        <div class = block_str>Manage Section</div>
+        <div class = block_sub>
+            <a href="../createSection/">
+                <button>Create Section</button>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
 {% endblock %}

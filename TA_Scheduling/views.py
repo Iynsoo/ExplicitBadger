@@ -1,6 +1,11 @@
-from django.shortcuts import render, redirect
-from django.views import View
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views import View, generic
+from django.views.generic import ListView, DetailView
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm, UserChangeForm
+from django.urls import reverse_lazy
 from .models import *
+from .forms import PasswordChangingForm, EditAccountForm
 from django.contrib import messages
 from django.contrib import messages
 # Create your views here.
@@ -150,6 +155,16 @@ class Create_Section(View):
 
     pass
 
+class View_Section(View):
+    def get(self, request):
+        return render(request, "viewSection.html", {})
+    pass
+
+class View_Course(View):
+    def get(self, request):
+        return render(request, "viewCourse.html", {})
+    pass
+
 class Home_instructor(View):
     def get(self, request):
         m = request.session["name"]
@@ -179,3 +194,10 @@ class User_profile(View):
         this = MyUser.objects.filter(name=name)
         this.update(email=email)
         return redirect("/profile/")
+
+class PasswordsChangeView(PasswordChangeView):
+    form_class = PasswordChangingForm
+    success_url = reverse_lazy('password_success')
+
+def password_sucess(request):
+    return render(request, 'password_success.html', {})
