@@ -49,9 +49,14 @@ class Home_admin(View):
 
 class Signup(View):
     def get(self, request):
-        return render(request, "createAccount.html", {})
+        m = request.session["name"]
+        role = MyUser.objects.get(name=m).userType
+        return render(request, "createAccount.html", {"name": m, "role": role})
 
     def post(self, request):
+        m = request.session["name"]
+        role = MyUser.objects.get(name=m).userType
+
         name = request.POST['username']
         pass1 = request.POST['pass1']
         pass2 = request.POST['pass2']
@@ -67,27 +72,35 @@ class Signup(View):
         print(lname)
 
         if pass1 != pass2:
-            return render(request, "createAccount.html", {"message": "Enter same password"})
+            return render(request, "createAccount.html", {"message": "Enter same password", "name": m, "role": role})
         else:
             MyUser.objects.create(name=name,password=pass1,userType=userType,email=email,first_name=fname,last_name=lname)
-            return render(request, "createAccount.html", {})
+            return render(request, "createAccount.html", {"name": m, "role": role})
 
 class Delete_Account(View):
     def get(self, request):
+        m = request.session["name"]
+        role = MyUser.objects.get(name=m).userType
         all_user = MyUser.objects.all
-        return render(request, "deleteAccount.html", {"all_user": all_user})
+        return render(request, "deleteAccount.html", {"all_user": all_user,"name": m, "role": role})
     def post(self, request):
+        m = request.session["name"]
+        role = MyUser.objects.get(name=m).userType
         all_user = MyUser.objects.all
         id = request.POST['id']
         print(id)
         MyUser.objects.get(id=id).delete()
-        return render(request, "deleteAccount.html", {"all_user": all_user})
+        return render(request, "deleteAccount.html", {"all_user": all_user,"name": m, "role": role})
 
 class Edit_Account(View):
     def get(self, request):
+        m = request.session["name"]
+        role = MyUser.objects.get(name=m).userType
         all_user = MyUser.objects.all
-        return render(request, "editAccount.html", {"all_user": all_user})
+        return render(request, "editAccount.html", {"all_user": all_user,"name": m, "role": role})
     def post(self, request):
+        m = request.session["name"]
+        role = MyUser.objects.get(name=m).userType
         all_user = MyUser.objects.all
 
         id = request.POST['id']
@@ -107,14 +120,18 @@ class Edit_Account(View):
         print(lname)
 
         MyUser.objects.filter(id=id).update(name=name,password=password,email=email,first_name=fname,last_name=lname)
-        return render(request, "editAccount.html", {"all_user": all_user})
+        return render(request, "editAccount.html", {"all_user": all_user,"name": m, "role": role})
 
 class Create_Course(View):
     def get(self, request):
+        m = request.session["name"]
+        role = MyUser.objects.get(name=m).userType
         all_courses = course.objects.all
         all_Ins = MyUser.objects.filter(userType="Instructor")
-        return render(request, "createCourse.html", {"all": all_courses,"all_Ins": all_Ins})
+        return render(request, "createCourse.html", {"all": all_courses,"all_Ins": all_Ins,"name": m, "role": role})
     def post(self,request):
+        m = request.session["name"]
+        role = MyUser.objects.get(name=m).userType
         all_courses = course.objects.all
         all_Ins = MyUser.objects.filter(userType="Instructor")
         s = request.POST.get('course', '')
@@ -137,14 +154,16 @@ class Create_Course(View):
         print(corInstructor)
         #if s != '':
         if check.exists():
-            return render(request, "createCourse.html", {"all": all_courses,"all_Ins":all_Ins, "message": "Course already exist!"})
+            return render(request, "createCourse.html", {"all": all_courses,"all_Ins":all_Ins, "message": "Course already exist!","name": m, "role": role})
         else:
             course.objects.create(courseName=corName, meetingTime=corTime, courseInstructor=corInstructor, sectionNum=secNum).userID.add(id)
-            return render(request, "createCourse.html", {"all": all_courses,"all_Ins":all_Ins, "message": "course created"})
+            return render(request, "createCourse.html", {"all": all_courses,"all_Ins":all_Ins, "message": "course created","name": m, "role": role})
 
 class Create_Section(View):
     def get(self, request):
-        return render(request, "createSection.html", {})
+        m = request.session["name"]
+        role = MyUser.objects.get(name=m).userType
+        return render(request, "createSection.html", {"name": m, "role": role})
     def post(self,request):
         allSections = discussion.objects.all
         s = request.POST.get('course','')
