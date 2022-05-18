@@ -1,3 +1,6 @@
+{%  extends 'base.html' %}
+{% block title %}Create Course{% endblock %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +35,7 @@ tr:nth-child(even) {
     <input type="text" class="form-control" id="courseName" name="courseName" placeholder="Create A courseName (use only letters and numbers)" Required>
     <br>
     <label for="courseTime">Course Meeting Time</label>
-    <input type="time" class="form-control" id="courseTime" name="courseTime" placeholder="Assign a Course Instructor (use only letters and numbers)" Required>
+    <input type="time" class="form-control" id="courseTime" name="courseTime" placeholder="Assign a Course Instructor (use only numbers)" Required>
     <br>
     <label for="userID">Course Instructor</label>
     <select class="form-control" id="userID" name="userID">
@@ -72,3 +75,4 @@ tr:nth-child(even) {
 </table>
 </body>
 </html>
+{% endblock %}

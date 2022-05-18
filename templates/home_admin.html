@@ -1,5 +1,5 @@
 {%  extends 'base.html' %}
-{% block title %}Create Account{% endblock %}
+{% block title %}Admin Home{% endblock %}
 {% block content %}
 <body>
 <!-- Manage Account block -->
@@ -29,6 +29,11 @@
     <div class = center>
         <div class = block_str>Manage Course</div>
         <div class = block_sub>
+            <a href="../viewCourse/">
+                <button>View Course</button>
+            </a>
+        </div>
+        <div class = block_sub>
             <a href="../createCourse/">
                 <button>Create Course</button>
             </a>
@@ -40,6 +45,11 @@
 <div class = block>
     <div class = center>
         <div class = block_str>Manage Section</div>
+        <div class = block_sub>
+            <a href="../viewSection/">
+                <button>View Section</button>
+            </a>
+        </div>
         <div class = block_sub>
             <a href="../createSection/">
                 <button>Create Section</button>

@@ -176,13 +176,42 @@ class Create_Section(View):
 
 class View_Section(View):
     def get(self, request):
-        return render(request, "viewSection.html", {})
+        m = request.session["name"]
+        role = MyUser.objects.get(name=m).userType
+        return render(request, "viewSection.html", {"name": m, "role": role})
     pass
 
 class View_Course(View):
     def get(self, request):
-        return render(request, "viewCourse.html", {})
-    pass
+        m = request.session["name"]
+        role = MyUser.objects.get(name=m).userType
+        all_course = course.objects.all
+        return render(request, "viewCourse.html", {"name": m, "role": role,"all_course":all_course})
+
+    def post(self, request):
+        m = request.session["name"]
+        role = MyUser.objects.get(name=m).userType
+        all_course = course.objects.all
+
+        s = request.POST['submit']
+        id = request.POST['id']
+        print(s)
+        print(id)
+        if s=="Edit":
+            request.session['courseId'] = id
+            return redirect("/editCourse/")
+        elif s=="Delete":
+            course.objects.get(id=id).delete()
+            return render(request, "viewCourse.html", {"name": m, "role": role, "all_course": all_course})
+
+class Edit_Course(View):
+    def get(self, request):
+        m = request.session["name"]
+        role = MyUser.objects.get(name=m).userType
+        #c = request.sesstion['courseId']
+        print(request.session['courseId'])
+        thisCourse = course.objects.get(id=request.session['courseId'])
+        return render(request, "editCourse.html", {"name": m, "role": role, "thisCourse":thisCourse})
 
 class Home_instructor(View):
     def get(self, request):
@@ -220,3 +249,4 @@ class PasswordsChangeView(PasswordChangeView):
 
 def password_sucess(request):
     return render(request, 'password_success.html', {})
+
